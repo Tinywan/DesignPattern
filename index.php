@@ -14,8 +14,12 @@ define('BASEDIR', __DIR__);
 include BASEDIR . '/Common/Loader.php';
 spl_autoload_register('\\Common\\Loader::autoload');
 
-$db = new \Common\DataBase\Pdo();
-$db->connect('127.0.0.1','root','root','test');
-$res = $db->query('show databases');
-var_dump($res);
+//$db = new \Common\DataBase\Pdo();
+//$db->connect('127.0.0.1','root','root','test');
+//$res = $db->query('show databases');
+//var_dump($res);
+$obj = new \Common\Object();
+var_dump(\Common\Object::GO("1111111111"));
+
+
 

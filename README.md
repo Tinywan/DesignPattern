@@ -80,12 +80,46 @@ echo $heap->extract();
 通过`ruturn $this`来完成链式操作
 
 ## PHP魔术方法的使用
-* `__get/__set`：类的属性魔术方法，当外部访问私有或者未定义属性时自动调用
-* `__call/__callStatic`：类的方法魔术方法，当外部访问私有或者未定义方法以及静态方法的时候自动调用  __callStatic也必须声明为static
-* `__toString`：将类的对象当成字符串使用时自动调用
-*　`__invoke`：将类的对象当成函数使用时自动调用
 
+###### `__get/__set`
 
+类的属性魔术方法，当外部访问私有或者未定义属性时自动调用  
+
+###### `__call/__callStatic`
+
+类的方法魔术方法，当外部访问私有或者未定义方法以及静态方法的时候自动调用  __callStatic也必须声明为static  
+
+###### `__toString`
+
+将类的对象当成字符串使用时自动调用  
+
+###### `__invoke`
+
+将类的对象当成函数使用时自动调用  
+
+###### stati绑定的都是后期子类    self绑定的本身
+
+自 PHP 5.3.0 起，PHP 增加了一个叫做后期静态绑定的功能，用于在继承范围内引用静态调用的类。
+
+```php
+<?php
+class A {
+    public static function who() {
+        echo __CLASS__;
+    }
+    public static function test() {
+        static::who(); // 后期静态绑定从这里开始
+    }
+}
+
+class B extends A {
+    public static function who() {
+        echo __CLASS__;
+    }
+}
+
+B::test(); // B
+```
 ## 基础设计模式简介 
 
 本章节主要对工厂模式、单例模式和注册树模式进行了基本的介绍，并通过实际案例详细讲解了这三种设计模式的实现以及适用场合。
